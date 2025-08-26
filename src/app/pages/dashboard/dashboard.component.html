@@ -1,0 +1,97 @@
+<div class="dashboard-page">
+  <div class="dashboard-container">
+    <app-menu-global></app-menu-global>
+
+    <h1>Dashboard</h1>
+    <p>Bem-vindo ao painel de controle!</p>
+
+      <!-- FILTROS SUPERIORES -->
+    <div class="dashboard-cards">
+      <div class="dashboard-card" *ngFor="let card of dashboardCards">
+        <div class="card-header">
+          <span class="card-icon">{{ card.icon }}</span>
+          <h4>{{ card.title }}</h4>
+        </div>
+
+        <div class="card-value">
+          {{ card.value }}
+        </div>
+
+        <div class="card-info">
+          <span class="card-growth" [ngClass]="{'positive': card.growth >= 0, 'negative': card.growth < 0}">
+            {{ card.growth >= 0 ? '+' : ''}}{{ card.growth }}%
+          </span>
+          <span class="card-subtext">{{ card.subtext }}</span>
+        </div>
+
+        <div class="card-footer">
+          <label>Filtrar:</label>
+          <select [(ngModel)]="card.filter" (change)="applyFilter(card)">
+            <option *ngFor="let option of card.filterOptions" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAFICOS DE PIZZA -->
+    <div class="charts-row">
+    <div class="chart-card">
+      <h3>Número de lojas por estado</h3>
+      <canvas baseChart
+              [data]="estadoLojaData"
+              [labels]="estadoLojaData.labels"
+               [options]="chartOptions"
+              [type]="'pie'">
+      </canvas>
+    </div>
+
+        <div class="chart-card">
+      <h3>Cidade Com maior Preço Medio</h3>
+      <canvas baseChart
+              [data]="cidadePrecoData"
+              [labels]="cidadePrecoData.labels"
+               [options]="chartOptions"
+              [type]="'pie'">
+      </canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>Estado com maior preço médio</h3>
+      <canvas baseChart
+              [data]="estadoPrecoData"
+              [labels]="estadoPrecoData.labels"
+               [options]="chartOptions"
+              [type]="'pie'">
+      </canvas>
+    </div>
+    </div>
+
+    <!-- TABELA DETALHADA -->
+    <div class="table-card">
+    <h3>Detalhes dos Produtos</h3>
+    <input type="text" placeholder="Buscar..." [(ngModel)]="searchTerm" class="search-input">
+
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let col of tabelaColunas">{{ col }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of filteredData()">
+          <td *ngFor="let col of tabelaColunas">
+            <ng-container *ngIf="isMoneyColumn(col); else normalValue">
+              {{ formatCurrency(row[col], col) }}
+            </ng-container>
+            <ng-template #normalValue>
+              {{ row[col] }}
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,24 @@
+{
+  "cards": [
+    { "title": "Estados com Lojas", "value": "20", "icon": "💰", "growth": 15.56, "subtext": "Nordeste", "filterOptions": ["SP","RJ","MG","PR"], "additionalInfo": "Lojas: 120" },
+    { "title": "Cidades com Lojas", "value": "32", "icon": "📦", "growth": 6.08, "subtext": "Nordeste", "filterOptions": ["Fortaleza-ce","Eusebio-ce"], "additionalInfo": "Produtos Internos: 50" },
+    { "title": "Lojas Ativas", "value": "51", "icon": "📈", "growth": 7.65, "subtext": "Nordeste", "filterOptions": ["loja A", "Loja B", "Loja C", "Loja D"], "additionalInfo": "'Lojas Ativas: 90" },
+    { "title": "Produtos Internos'", "value": "51", "icon": "💵", "growth": 7.65, "subtext": "Nordeste", "filterOptions": ["Produto a'", "Produto B", "Produto C", "Produto D"], "additionalInfo": "Produtos Internos: 50" }
+
+  ],
+  "filters": [
+    { "label": "Estado", "value": "", "options": ["SP","RJ","MG","PR"] },
+    { "label": "Cidade", "value": "", "options": ["São Paulo","Rio de Janeiro","Belo Horizonte","Curitiba"] }
+  ],
+  "table": [
+    { "id": 1, "estado": "SP", "cidade": "São Paulo", "loja": "Loja 1", "produto-Interno": "Produto A", "valor-Interno": 10, "concorrente": "Loja X", "produto-Externo": "Produto X", "valor-Externo": 12, "diferenca": 2 }
+  ],
+  "chart-estados-lojas": {
+    "labels": ["SP","RJ","MG","PR"],
+    "datasets": [{ "data": [120,80,60,40], "backgroundColor": ["#1976d2","#63a4ff","#ffa500","#ff6347"] }]
+  },
+  "chart-estados-precos": {
+    "labels": ["SP","RJ","MG","PR"],
+    "datasets": [{ "data": [15.5,14.2,16.8,13.5], "backgroundColor": ["#1976d2","#63a4ff","#ffa500","#ff6347"] }]
+  }
+}

@@ -1,0 +1,84 @@
+<div class="login-page">
+
+  <!-- Lado esquerdo: título e logo -->
+  <div class="login-info">
+    <img src="logopp.png" alt="Painel Price Logo" class="logo">
+    <h1>Painel Price</h1>
+    <p>Bem-vindo ao sistema de gerenciamento de preços.</p>
+  </div>
+
+  <!-- Lado direito: formulário -->
+  <div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form animate-login">
+
+      <!-- EMAIL -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" placeholder="Digite seu email">
+        <div *ngIf="submitted && f['email'].errors" class="error">
+          <div *ngIf="f['email'].errors?.['required']">Email é obrigatório</div>
+          <div *ngIf="f['email'].errors?.['email']">Email inválido</div>
+        </div>
+      </div>
+
+      <!-- SENHA -->
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <div class="password-wrapper">
+          <input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Digite sua senha"
+          >
+          <span class="toggle-password" (click)="togglePassword()">
+            <span *ngIf="showPassword" class="material-icons">visibility_off</span>
+            <span *ngIf="!showPassword" class="material-icons">visibility</span>
+          </span>
+        </div>
+        <div *ngIf="submitted && f['password'].errors" class="error">
+          <div *ngIf="f['password'].errors?.['required']">Senha é obrigatória</div>
+          <div *ngIf="f['password'].errors?.['minlength']">Senha deve ter no mínimo 6 caracteres</div>
+        </div>
+      </div>
+
+      <!-- BOTÃO LOGIN -->
+      <button type="submit" [disabled]="loading" class="primary-btn">
+        {{ loading ? 'Carregando...' : 'Entrar' }}
+      </button>
+
+      <!-- LINK PARA REDEFINIR SENHA -->
+      <div class="forgot-password">
+        <a (click)="openForgotPasswordModal()" style="cursor:pointer;">Esqueci minha senha</a>
+      </div>
+
+      <!-- MENSAGEM DE ERRO -->
+      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+    </form>
+  </div>
+
+  <!-- MODAL DE REDEFINIÇÃO DE SENHA -->
+  <div class="modal" *ngIf="showForgotPasswordModal">
+    <div class="modal-content animate-modal">
+      <span class="close" (click)="closeForgotPasswordModal()">&times;</span>
+      <h2>Redefinir Senha</h2>
+      <form [formGroup]="forgotPasswordForm" (ngSubmit)="sendResetLink()">
+        <div class="form-group">
+          <label for="forgot-email">Email</label>
+          <input id="forgot-email" type="email" formControlName="email" placeholder="Digite seu email">
+          <div *ngIf="forgotPasswordSubmitted && forgotPasswordForm.controls['email'].errors" class="error">
+            <div *ngIf="forgotPasswordForm.controls['email'].errors?.['required']">Email é obrigatório</div>
+            <div *ngIf="forgotPasswordForm.controls['email'].errors?.['email']">Email inválido</div>
+          </div>
+        </div>
+        <button type="submit" class="primary-btn">Enviar Link</button>
+      </form>
+      <div *ngIf="forgotPasswordMessage" class="success">{{ forgotPasswordMessage }}</div>
+      <div *ngIf="forgotPasswordError" class="error">{{ forgotPasswordError }}</div>
+    </div>
+  </div>
+
+  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+
+</div>

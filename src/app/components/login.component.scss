@@ -1,0 +1,234 @@
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Lado esquerdo */
+.login-info {
+  flex: 0 0 35%;
+  background: linear-gradient(135deg, #6dabe8, #606f85);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.login-info .logo {
+  width: 150px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+}
+
+.login-info h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.login-info p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+}
+
+/* Lado direito */
+.login-container {
+  flex: 1; /* ocupa todo espaço restante */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f6fa;
+  padding: 40px 20px;
+}
+
+/* Formulário */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  //opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Inputs e botão */
+.form-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  padding-right: 40px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 5px rgba(25,118,210,0.3);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.3em;
+  color: #555;
+}
+
+/* Botão */
+button.primary-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+button.primary-btn:hover {
+  background-color: #115293;
+  transform: translateY(-2px);
+}
+
+button.primary-btn:disabled {
+  background-color: #a0bce9;
+  cursor: not-allowed;
+}
+
+/* Erros e sucesso */
+.error {
+  color: #e74c3c;
+  font-size: 0.875em;
+  margin-top: 4px;
+}
+
+.success {
+  color: #388e3c;
+  font-size: 0.875em;
+  margin-top: 4px;
+}
+
+/* Forgot password */
+.forgot-password {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* Animações */
+.animate-login {
+  animation: slideIn 0.6s ease-out;
+}
+
+.animate-modal {
+  animation: fadeIn 0.4s ease-out;
+}
+
+
+.success {
+  color: #2ecc71;
+  font-size: 0.95em;
+  margin-top: 10px;
+}
+
+
+@keyframes slideIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-info, .login-container {
+    flex: none;
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .login-form {
+    box-shadow: none;
+  }
+}
